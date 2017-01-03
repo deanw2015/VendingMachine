@@ -1,12 +1,12 @@
 /// <reference path="product.ts" />
 
 class productFactory {
-    static GetProduct(): IProduct {
+    static GetProduct(): Product {
 
-        let products: IProduct[] = [ new PepsiCola(), new MAndMs(), new Samba(), new Lays() ];
+        let products: Product[] = [ new Sprite(), new PepsiCola(), new MAndMs(), new Samba(), new Lays(), new DairyMilk() ];
 
-        let rnd = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
+        let rnd = Math.floor(Math.random() * 6);
 
-        return products[rnd-1];
+        return products[rnd];
     }
 }

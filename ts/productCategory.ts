@@ -10,7 +10,16 @@ class SodaCategory extends ProductCategory {
         super("Soda");
      }
     getImageUrl() {
-        return this.imagePath + "SodaCan.png";
+        return this.imagePath + "Pepsi.png";
+    }
+}
+
+class LemonadeCategory extends ProductCategory {
+    constructor() { 
+        super("Lemonade");
+     }
+    getImageUrl() {
+        return this.imagePath + "Sprite.png";
     }
 }
 
@@ -38,5 +47,14 @@ class CookiesCategory extends ProductCategory {
      }
     getImageUrl() {
         return this.imagePath + "Cookies.png";
+    }
+}
+
+class ChocolateCategory extends ProductCategory {
+    constructor() { 
+        super("Chocolate");
+     }
+    getImageUrl() {
+        return this.imagePath + "DairyMilk.png";
     }
 }

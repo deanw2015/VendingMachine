@@ -3,55 +3,63 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Coin = (function () {
-    function Coin(value, name) {
-        this.value = value;
-        this.name = name;
-        this.imagePath = "content/images/";
-        this.value = value;
-    }
-    return Coin;
-}());
-var Dollar = (function (_super) {
-    __extends(Dollar, _super);
-    function Dollar() {
-        return _super.call(this, 1.00, "dollar") || this;
-    }
-    Dollar.prototype.getImageUrl = function () {
-        return this.imagePath + "Dollar.png";
-    };
-    return Dollar;
-}(Coin));
-var Half = (function (_super) {
-    __extends(Half, _super);
-    function Half() {
-        return _super.call(this, .50, "half") || this;
-    }
-    Half.prototype.getImageUrl = function () {
-        return this.imagePath + "Half.png";
-    };
-    return Half;
-}(Coin));
-var Quarter = (function (_super) {
-    __extends(Quarter, _super);
-    function Quarter() {
-        return _super.call(this, .25, "quarter") || this;
-    }
-    Quarter.prototype.getImageUrl = function () {
-        return this.imagePath + "Quarter.png";
-    };
-    return Quarter;
-}(Coin));
-var Dime = (function (_super) {
-    __extends(Dime, _super);
-    function Dime() {
-        return _super.call(this, .10, "dime") || this;
-    }
-    Dime.prototype.getImageUrl = function () {
-        return this.imagePath + "Dime.png";
-    };
-    return Dime;
-}(Coin));
+var Coins;
+(function (Coins) {
+    var Coin = (function () {
+        function Coin(value, name) {
+            this.value = value;
+            this.name = name;
+            this.imagePath = "content/images/";
+            this.value = value;
+        }
+        return Coin;
+    }());
+    Coins.Coin = Coin;
+    var Dollar = (function (_super) {
+        __extends(Dollar, _super);
+        function Dollar() {
+            return _super.call(this, 1.00, "dollar") || this;
+        }
+        Dollar.prototype.getImageUrl = function () {
+            return this.imagePath + "Dollar.png";
+        };
+        return Dollar;
+    }(Coin));
+    Coins.Dollar = Dollar;
+    var Half = (function (_super) {
+        __extends(Half, _super);
+        function Half() {
+            return _super.call(this, .50, "half") || this;
+        }
+        Half.prototype.getImageUrl = function () {
+            return this.imagePath + "Half.png";
+        };
+        return Half;
+    }(Coin));
+    Coins.Half = Half;
+    var Quarter = (function (_super) {
+        __extends(Quarter, _super);
+        function Quarter() {
+            return _super.call(this, .25, "quarter") || this;
+        }
+        Quarter.prototype.getImageUrl = function () {
+            return this.imagePath + "Quarter.png";
+        };
+        return Quarter;
+    }(Coin));
+    Coins.Quarter = Quarter;
+    var Dime = (function (_super) {
+        __extends(Dime, _super);
+        function Dime() {
+            return _super.call(this, .10, "dime") || this;
+        }
+        Dime.prototype.getImageUrl = function () {
+            return this.imagePath + "Dime.png";
+        };
+        return Dime;
+    }(Coin));
+    Coins.Dime = Dime;
+})(Coins || (Coins = {}));
 var ProductCategory = (function () {
     function ProductCategory(name) {
         this.imagePath = "content/images/";
@@ -64,9 +72,19 @@ var SodaCategory = (function (_super) {
         return _super.call(this, "Soda") || this;
     }
     SodaCategory.prototype.getImageUrl = function () {
-        return this.imagePath + "SodaCan.png";
+        return this.imagePath + "Pepsi.png";
     };
     return SodaCategory;
+}(ProductCategory));
+var LemonadeCategory = (function (_super) {
+    __extends(LemonadeCategory, _super);
+    function LemonadeCategory() {
+        return _super.call(this, "Lemonade") || this;
+    }
+    LemonadeCategory.prototype.getImageUrl = function () {
+        return this.imagePath + "Sprite.png";
+    };
+    return LemonadeCategory;
 }(ProductCategory));
 var CandyCategory = (function (_super) {
     __extends(CandyCategory, _super);
@@ -98,7 +116,24 @@ var CookiesCategory = (function (_super) {
     };
     return CookiesCategory;
 }(ProductCategory));
+var ChocolateCategory = (function (_super) {
+    __extends(ChocolateCategory, _super);
+    function ChocolateCategory() {
+        return _super.call(this, "Chocolate") || this;
+    }
+    ChocolateCategory.prototype.getImageUrl = function () {
+        return this.imagePath + "DairyMilk.png";
+    };
+    return ChocolateCategory;
+}(ProductCategory));
 /// <reference path="productCategory.ts" />
+var Initial = (function () {
+    function Initial() {
+        this.name = "Please select a product";
+        this.price = 0;
+    }
+    return Initial;
+}());
 var PepsiCola = (function () {
     function PepsiCola() {
         this.name = "Pepsi Cola";
@@ -106,6 +141,14 @@ var PepsiCola = (function () {
         this.category = new SodaCategory();
     }
     return PepsiCola;
+}());
+var Sprite = (function () {
+    function Sprite() {
+        this.name = "Sprite";
+        this.price = 1.75;
+        this.category = new LemonadeCategory();
+    }
+    return Sprite;
 }());
 var MAndMs = (function () {
     function MAndMs() {
@@ -131,14 +174,22 @@ var Lays = (function () {
     }
     return Lays;
 }());
+var DairyMilk = (function () {
+    function DairyMilk() {
+        this.name = "Dairy Milk";
+        this.price = 0.65;
+        this.category = new ChocolateCategory();
+    }
+    return DairyMilk;
+}());
 /// <reference path="product.ts" />
 var productFactory = (function () {
     function productFactory() {
     }
     productFactory.GetProduct = function () {
-        var products = [new PepsiCola(), new MAndMs(), new Samba(), new Lays()];
-        var rnd = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
-        return products[rnd - 1];
+        var products = [new Sprite(), new PepsiCola(), new MAndMs(), new Samba(), new Lays(), new DairyMilk()];
+        var rnd = Math.floor(Math.random() * 6);
+        return products[rnd];
     };
     return productFactory;
 }());
@@ -165,13 +216,13 @@ var VendingMachine = (function () {
         var _this = this;
         this.paid = ko.observable(0);
         this.cells = ko.observableArray([]);
-        this.selectedCell = ko.observable(new Cell(new PepsiCola()));
-        this.canPay = ko.pureComputed(function () { return _this.paid() - _this.selectedCell().product.price >= 0; });
+        this.selectedCell = ko.observable(new Cell(new Initial()));
+        this.canPay = ko.pureComputed(function () { return _this.selectedCell().product.price > 0 && _this.paid() - _this.selectedCell().product.price >= 0; });
         this.selectCell = function (cell) {
             cell.sold(false);
             _this.selectedCell(cell);
         };
-        this.acceptedCoins = [new Dollar(), new Half(), new Quarter(), new Dime()];
+        this.acceptedCoins = [new Coins.Dollar(), new Coins.Half(), new Coins.Quarter(), new Coins.Dime()];
         this.acceptCoin = function (coin) {
             var oldTotal = _this.paid();
             _this.paid(oldTotal + coin.value);
@@ -203,6 +254,6 @@ var VendingMachine = (function () {
 }());
 /// <reference path="vendingMachine.ts" />
 var machine = new VendingMachine();
-machine.size = VendingMachineSize.small;
+machine.size = VendingMachineSize.medium;
 ko.applyBindings(machine);
 //# sourceMappingURL=app.js.map

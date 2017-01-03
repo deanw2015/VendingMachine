@@ -10,7 +10,7 @@ enum VendingMachineSize {
 }
 
 class Cell {
-    constructor(public product: IProduct) { }
+    constructor(public product: Product) { }
     
     stock = ko.observable(3);
     sold = ko.observable(false);
@@ -19,8 +19,8 @@ class Cell {
 class VendingMachine {
     private paid = ko.observable(0);
     cells = ko.observableArray([]);
-    selectedCell = ko.observable(new Cell(new PepsiCola()));
-    canPay = ko.pureComputed(() => this.paid() - this.selectedCell().product.price >= 0);
+    selectedCell = ko.observable(new Cell(new Initial()));
+    canPay = ko.pureComputed(() => this.selectedCell().product.price > 0 && this.paid() - this.selectedCell().product.price >= 0);
 
     set size(givenSize: VendingMachineSize){
 
@@ -35,9 +35,9 @@ class VendingMachine {
         this.selectedCell(cell);
      };
 
-    acceptedCoins: Coin[] = [new Dollar(), new Half(), new Quarter(), new Dime()];
+    acceptedCoins: Coins.Coin[] = [new Coins.Dollar(), new Coins.Half(), new Coins.Quarter(), new Coins.Dime()];
 
-    acceptCoin = (coin: Coin) : void => {
+    acceptCoin = (coin: Coins.Coin) : void => {
         let oldTotal = this.paid();
         this.paid(oldTotal + coin.value);
     }
