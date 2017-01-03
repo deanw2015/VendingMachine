@@ -5,7 +5,9 @@ namespace Coins {
         }
 
         protected imagePath = "content/images/";
+        protected soundPath = "content/audio/";
         abstract getImageUrl() : string
+        abstract getSoundUrl() : string
     }
 
     export class Dollar extends Coin {
@@ -15,6 +17,10 @@ namespace Coins {
         getImageUrl(): string {
             return this.imagePath + "Dollar.png";
         }
+        getSoundUrl(): string {
+            return this.soundPath + "Coin1.wav";
+        }
+        
     }
 
     export class Half extends Coin {
@@ -23,6 +29,9 @@ namespace Coins {
         }
         getImageUrl(): string {
             return this.imagePath + "Half.png";
+        }        
+        getSoundUrl(): string {
+            return this.soundPath + "Coin2.wav";
         }
     }
 
@@ -33,6 +42,10 @@ namespace Coins {
         getImageUrl(): string {
             return this.imagePath + "Quarter.png";
         }
+        
+        getSoundUrl(): string {
+            return this.soundPath + "Coin3.wav";
+        }
     }
 
     export class Dime extends Coin {
@@ -41,6 +54,10 @@ namespace Coins {
         }
         getImageUrl(): string {
             return this.imagePath + "Dime.png";
+        }
+        
+        getSoundUrl(): string {
+            return this.soundPath + "Coin4.wav";
         }
     }
 }

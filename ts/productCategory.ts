@@ -1,8 +1,10 @@
 abstract class ProductCategory {
     protected imagePath = "content/images/";
+    protected soundPath = "content/audio/";
     constructor(name: string) { }
 
 abstract getImageUrl(): string;
+abstract getSoundUrl(): string;
 }
 
 class SodaCategory extends ProductCategory {
@@ -11,6 +13,9 @@ class SodaCategory extends ProductCategory {
      }
     getImageUrl() {
         return this.imagePath + "Pepsi.png";
+    }
+    getSoundUrl() {
+        return this.soundPath + "CanDrop.wav";
     }
 }
 
@@ -21,6 +26,9 @@ class LemonadeCategory extends ProductCategory {
     getImageUrl() {
         return this.imagePath + "Sprite.png";
     }
+    getSoundUrl() {
+        return this.soundPath + "CanDrop.wav";
+    }
 }
 
 class CandyCategory extends ProductCategory {
@@ -29,6 +37,9 @@ class CandyCategory extends ProductCategory {
      }
     getImageUrl() {
         return this.imagePath + "Candies.png";
+    }
+    getSoundUrl() {
+        return this.soundPath + "CanDrop.wav";
     }
 }
 
@@ -39,6 +50,9 @@ class ChipsCategory extends ProductCategory {
     getImageUrl() {
         return this.imagePath + "Chips.png";
     }
+    getSoundUrl() {
+        return this.soundPath + "CanDrop.wav";
+    }
 }
 
 class CookiesCategory extends ProductCategory {
@@ -48,6 +62,9 @@ class CookiesCategory extends ProductCategory {
     getImageUrl() {
         return this.imagePath + "Cookies.png";
     }
+    getSoundUrl() {
+        return this.soundPath + "CanDrop.wav";
+    }
 }
 
 class ChocolateCategory extends ProductCategory {
@@ -56,5 +73,8 @@ class ChocolateCategory extends ProductCategory {
      }
     getImageUrl() {
         return this.imagePath + "DairyMilk.png";
+    }
+    getSoundUrl() {
+        return this.soundPath + "CanDrop.wav";
     }
 }

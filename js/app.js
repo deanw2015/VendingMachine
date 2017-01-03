@@ -10,6 +10,7 @@ var Coins;
             this.value = value;
             this.name = name;
             this.imagePath = "content/images/";
+            this.soundPath = "content/audio/";
             this.value = value;
         }
         return Coin;
@@ -23,6 +24,9 @@ var Coins;
         Dollar.prototype.getImageUrl = function () {
             return this.imagePath + "Dollar.png";
         };
+        Dollar.prototype.getSoundUrl = function () {
+            return this.soundPath + "Coin1.wav";
+        };
         return Dollar;
     }(Coin));
     Coins.Dollar = Dollar;
@@ -33,6 +37,9 @@ var Coins;
         }
         Half.prototype.getImageUrl = function () {
             return this.imagePath + "Half.png";
+        };
+        Half.prototype.getSoundUrl = function () {
+            return this.soundPath + "Coin2.wav";
         };
         return Half;
     }(Coin));
@@ -45,6 +52,9 @@ var Coins;
         Quarter.prototype.getImageUrl = function () {
             return this.imagePath + "Quarter.png";
         };
+        Quarter.prototype.getSoundUrl = function () {
+            return this.soundPath + "Coin3.wav";
+        };
         return Quarter;
     }(Coin));
     Coins.Quarter = Quarter;
@@ -56,6 +66,9 @@ var Coins;
         Dime.prototype.getImageUrl = function () {
             return this.imagePath + "Dime.png";
         };
+        Dime.prototype.getSoundUrl = function () {
+            return this.soundPath + "Coin4.wav";
+        };
         return Dime;
     }(Coin));
     Coins.Dime = Dime;
@@ -63,6 +76,7 @@ var Coins;
 var ProductCategory = (function () {
     function ProductCategory(name) {
         this.imagePath = "content/images/";
+        this.soundPath = "content/audio/";
     }
     return ProductCategory;
 }());
@@ -74,6 +88,9 @@ var SodaCategory = (function (_super) {
     SodaCategory.prototype.getImageUrl = function () {
         return this.imagePath + "Pepsi.png";
     };
+    SodaCategory.prototype.getSoundUrl = function () {
+        return this.soundPath + "CanDrop.wav";
+    };
     return SodaCategory;
 }(ProductCategory));
 var LemonadeCategory = (function (_super) {
@@ -83,6 +100,9 @@ var LemonadeCategory = (function (_super) {
     }
     LemonadeCategory.prototype.getImageUrl = function () {
         return this.imagePath + "Sprite.png";
+    };
+    LemonadeCategory.prototype.getSoundUrl = function () {
+        return this.soundPath + "CanDrop.wav";
     };
     return LemonadeCategory;
 }(ProductCategory));
@@ -94,6 +114,9 @@ var CandyCategory = (function (_super) {
     CandyCategory.prototype.getImageUrl = function () {
         return this.imagePath + "Candies.png";
     };
+    CandyCategory.prototype.getSoundUrl = function () {
+        return this.soundPath + "CanDrop.wav";
+    };
     return CandyCategory;
 }(ProductCategory));
 var ChipsCategory = (function (_super) {
@@ -103,6 +126,9 @@ var ChipsCategory = (function (_super) {
     }
     ChipsCategory.prototype.getImageUrl = function () {
         return this.imagePath + "Chips.png";
+    };
+    ChipsCategory.prototype.getSoundUrl = function () {
+        return this.soundPath + "CanDrop.wav";
     };
     return ChipsCategory;
 }(ProductCategory));
@@ -114,6 +140,9 @@ var CookiesCategory = (function (_super) {
     CookiesCategory.prototype.getImageUrl = function () {
         return this.imagePath + "Cookies.png";
     };
+    CookiesCategory.prototype.getSoundUrl = function () {
+        return this.soundPath + "CanDrop.wav";
+    };
     return CookiesCategory;
 }(ProductCategory));
 var ChocolateCategory = (function (_super) {
@@ -123,6 +152,9 @@ var ChocolateCategory = (function (_super) {
     }
     ChocolateCategory.prototype.getImageUrl = function () {
         return this.imagePath + "DairyMilk.png";
+    };
+    ChocolateCategory.prototype.getSoundUrl = function () {
+        return this.soundPath + "CanDrop.wav";
     };
     return ChocolateCategory;
 }(ProductCategory));
@@ -226,6 +258,8 @@ var VendingMachine = (function () {
         this.acceptCoin = function (coin) {
             var oldTotal = _this.paid();
             _this.paid(oldTotal + coin.value);
+            var snd = new Audio(coin.getSoundUrl()); // buffers automatically when created
+            snd.play();
         };
         this.pay = function () {
             if (_this.selectedCell().stock() < 1) {
@@ -238,6 +272,8 @@ var VendingMachine = (function () {
             var currentStock = _this.selectedCell().stock();
             _this.selectedCell().stock(currentStock - 1);
             _this.selectedCell().sold(true);
+            var snd = new Audio(_this.selectedCell().product.category.getSoundUrl());
+            snd.play();
         };
     }
     Object.defineProperty(VendingMachine.prototype, "size", {

@@ -40,6 +40,8 @@ class VendingMachine {
     acceptCoin = (coin: Coins.Coin) : void => {
         let oldTotal = this.paid();
         this.paid(oldTotal + coin.value);
+        let snd = new Audio(coin.getSoundUrl()); // buffers automatically when created
+        snd.play();
     }
 
     pay = (): void => {
@@ -53,5 +55,7 @@ class VendingMachine {
         let currentStock = this.selectedCell().stock();
         this.selectedCell().stock(currentStock - 1);
         this.selectedCell().sold(true);
- }
+        let snd = new Audio(this.selectedCell().product.category.getSoundUrl());
+        snd.play();
+    }
 }
