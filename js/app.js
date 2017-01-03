@@ -115,12 +115,30 @@ var MAndMs = (function () {
     }
     return MAndMs;
 }());
+var Samba = (function () {
+    function Samba() {
+        this.name = "Samba";
+        this.price = 0.95;
+        this.category = new CookiesCategory();
+    }
+    return Samba;
+}());
+var Lays = (function () {
+    function Lays() {
+        this.name = "Lays";
+        this.price = 0.50;
+        this.category = new ChipsCategory();
+    }
+    return Lays;
+}());
 /// <reference path="product.ts" />
 var productFactory = (function () {
     function productFactory() {
     }
     productFactory.GetProduct = function () {
-        return new PepsiCola();
+        var products = [new PepsiCola(), new MAndMs(), new Samba(), new Lays()];
+        var rnd = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
+        return products[rnd - 1];
     };
     return productFactory;
 }());

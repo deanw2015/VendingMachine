@@ -17,3 +17,15 @@ class MAndMs implements IProduct {
      price = 0.80;
      category = new CandyCategory();
 }
+
+class Samba implements IProduct {
+     name = "Samba";
+     price = 0.95;
+     category = new CookiesCategory();
+}
+
+class Lays implements IProduct {
+     name = "Lays";
+     price = 0.50;
+     category = new ChipsCategory();
+}

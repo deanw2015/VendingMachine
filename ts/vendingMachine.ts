@@ -10,7 +10,7 @@ enum VendingMachineSize {
 }
 
 class Cell {
-    constructor(public product: PepsiCola) { }
+    constructor(public product: IProduct) { }
     
     stock = ko.observable(3);
     sold = ko.observable(false);
