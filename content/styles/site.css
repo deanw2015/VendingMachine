@@ -27,6 +27,31 @@ body {
     margin-left: 15px;
 }
 
+.product {
+    max-width: 112px;
+    max-height: 112px;
+}
+
+.dollar {
+    max-width: 72px;
+    max-height: 72px;
+}
+
+.half {
+    max-width: 64px;
+    max-height: 64px;
+}
+
+.quarter {
+    max-width: 58px;
+    max-height: 58px;
+}
+
+.dime {
+    max-width: 48px;
+    max-height: 48px;
+}
+
 .selected .image {
     animation-name: rotate;
     animation-duration: 2s;
@@ -43,5 +68,5 @@ body {
 }
 
 @keyframes drop {
-    99% { transform: translateY(600px) rotate(120deg); }
+    100% { transform: translateY(600px) rotate(120deg); }
 }
